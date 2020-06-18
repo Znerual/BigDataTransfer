@@ -37,7 +37,6 @@ print(f"Server gestartet mit IP Adresse {getIp()}")
 s = socket.socket()
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-time.sleep(4)
 s.bind((SOURCE_HOST, SOURCE_PORT))
 s.listen(5)
 print(f"[*] Listening as {SOURCE_HOST}:{SOURCE_PORT}")

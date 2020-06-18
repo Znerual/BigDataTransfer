@@ -11,17 +11,17 @@ class Connection:
 
 
 
-DESTINATION_HOST = "194.232.104.142"  #"80.110.70.170"
-DESTINATION_PORT = 80
+DESTINATION_HOST =  "80.110.112.221"# "194.232.104.142"#  #   #"80.110.70.170"
+DESTINATION_PORT = 1025
 
-SOURCE_PORT = randint(1024,65535)
+SOURCE_PORT = 1025#randint(1024,65535)
 SOURCE_HOST = "192.168.0.31"
 
 interfaces = []
 for key, value in IFACES.items():
     if not "[Unknown]" in str(value):
         interfaces.append(value)
-        print(f"key {key} value {value}")
+        #print(f"key {key} value {value}")
 
 def match_packet(pkt):
     #pkt.show()
@@ -35,11 +35,11 @@ def match_packet(pkt):
 #SYN
 ip = IP(dst=DESTINATION_HOST)
 SYN = TCP(sport=SOURCE_PORT, dport=DESTINATION_PORT, flags='S', seq=1000)
-synAck = sr1(ip/SYN)
-#send(ip/SYN)
-#ans = sniff(iface=interfaces,lfilter=match_packet,count=6,timeout=10)
-#ans.show()
-synAck.show()
+#synAck = sr1(ip/SYN)
+send(ip/SYN)
+ans = sniff(iface=interfaces,lfilter=match_packet,count=1,timeout=100)
+ans.show()
+#synAck.show()
 #SYNACK =sr1(ip/SYN) #send the package and wait for the answer
 
 
